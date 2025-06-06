@@ -1,6 +1,6 @@
 import { appInfo } from "@/utils/constants";
-import Image from "next/image";
 import { Dancing_Script } from "next/font/google";
+import SignInOutButton from "./SignInOutButton";
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -15,15 +15,7 @@ const Navbar = () => {
             {appInfo.title}
           </h1>
           <div className="flex gap-8">
-            <button className="flex cursor-pointer items-center justify-center gap-2 rounded-[1000px] bg-gray-800 px-6 py-2 text-xl font-semibold transition-all duration-500 hover:bg-gray-100 hover:text-gray-700">
-              <Image
-                src={`/icons/google-color-icon.png`}
-                alt="Google icon"
-                width={20}
-                height={20}
-              />
-              SignIn
-            </button>
+            <SignInOutButton />
             <button className="relative cursor-pointer rounded-[1000px] bg-gray-900 px-4 py-2 font-semibold transition-colors duration-500 after:absolute after:-inset-0.5 after:-z-10 after:rounded-[1000px] after:bg-linear-to-r after:from-purple-500 after:to-pink-500 after:blur-lg after:transition-all after:duration-300 after:content-[''] hover:bg-gray-800 hover:after:blur-xl">
               {appInfo.getStarted}
             </button>
