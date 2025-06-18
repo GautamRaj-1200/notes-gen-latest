@@ -20,6 +20,7 @@ export const authOptions: AuthOptions = {
           email: profile.email,
           image: profile.picture,
           role: profile.role ?? "USER",
+          credits: 5,
         };
       },
     }),
@@ -29,13 +30,27 @@ export const authOptions: AuthOptions = {
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.credits = user.credits;
+        return token;
       }
+
+      if (token.id) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { credits: true },
+        });
+        if (dbUser) {
+          token.credits = dbUser.credits;
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.user.credits = token.credits as number;
       }
       return session;
     },

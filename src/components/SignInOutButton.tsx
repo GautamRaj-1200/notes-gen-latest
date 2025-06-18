@@ -44,7 +44,7 @@ const SignInOutButton = () => {
               <Link href="/user/dashboard">Dashboard</Link>
             </DropdownMenuItem>
             <DropdownMenuItem className="flex justify-between">
-              <span>Credits</span> <span>5</span>{" "}
+              <span>Credits</span> <span>{session.user.credits}</span>{" "}
             </DropdownMenuItem>
             <DropdownMenuItem>
               <button onClick={() => signOut()}>SignOut</button>{" "}

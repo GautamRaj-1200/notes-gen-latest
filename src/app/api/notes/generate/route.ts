@@ -73,10 +73,21 @@ export async function POST(req: Request) {
     const response = result.response;
     const notesMarkdown = response.text();
 
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: { credits: { decrement: 1 } },
-    });
+    const fileName = key.split("/").pop()!;
+
+    await prisma.$transaction([
+      prisma.user.update({
+        where: { id: session.user.id },
+        data: { credits: { decrement: 1 } },
+      }),
+      prisma.creditHistory.create({
+        data: {
+          userId: session.user.id,
+          details: `Generated notes for ${fileName}`,
+          creditsUsed: 1,
+        },
+      }),
+    ]);
 
     return NextResponse.json({ notes: notesMarkdown });
   } catch (error) {
