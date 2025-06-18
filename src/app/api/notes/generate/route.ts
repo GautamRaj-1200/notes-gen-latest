@@ -59,10 +59,7 @@ export async function POST(req: Request) {
     const pdfBuffer = await Body.transformToByteArray();
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const prompt = `Summarize this document in detail. Provide key takeaways, important concepts, and a concise summary suitable for creating study notes. 
-    **Crucially, format the entire output using GitHub Flavored Markdown.**
-    Use headings, lists, bold text, and other elements to create a well-structured and easy-to-read document.
-    Do not include any non-markdown text or introductions like "Here is the summary...". The entire response should be pure markdown.`;
+    const prompt = process.env.PROMPT ?? "";
 
     const result = await model.generateContent([
       prompt,

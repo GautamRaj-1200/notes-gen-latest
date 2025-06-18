@@ -12,10 +12,12 @@ const Navbar = () => {
     <>
       <header>
         <nav className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 p-4 md:flex-row md:gap-0">
-          <h1 className={`${dancingScript.className} text-4xl font-black`}>
-            {appInfo.title}
-          </h1>
-          <div className="flex gap-8">
+          <Link href="/">
+            <h1 className={`${dancingScript.className} text-4xl font-black`}>
+              {appInfo.title}
+            </h1>
+          </Link>
+          <div className="flex items-center gap-8">
             <SignInOutButton />
             <Link
               href="/user/create-notes"
