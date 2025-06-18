@@ -1,6 +1,7 @@
 import { appInfo } from "@/utils/constants";
 import { Dancing_Script } from "next/font/google";
 import SignInOutButton from "./SignInOutButton";
+import Link from "next/link";
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -16,9 +17,12 @@ const Navbar = () => {
           </h1>
           <div className="flex gap-8">
             <SignInOutButton />
-            <button className="relative cursor-pointer rounded-[1000px] bg-gray-900 px-4 py-2 font-semibold transition-colors duration-500 after:absolute after:-inset-0.5 after:-z-10 after:rounded-[1000px] after:bg-linear-to-r after:from-purple-500 after:to-pink-500 after:blur-lg after:transition-all after:duration-300 after:content-[''] hover:bg-gray-800 hover:after:blur-xl">
+            <Link
+              href="/user/create-notes"
+              className="relative cursor-pointer rounded-[1000px] bg-gray-900 px-4 py-2 font-semibold transition-colors duration-500 after:absolute after:-inset-0.5 after:-z-10 after:rounded-[1000px] after:bg-gradient-to-r after:from-purple-500 after:to-pink-500 after:blur-lg after:transition-all after:duration-300 after:content-[''] hover:bg-gray-800 hover:after:blur-xl"
+            >
               {appInfo.getStarted}
-            </button>
+            </Link>
           </div>
         </nav>
       </header>
